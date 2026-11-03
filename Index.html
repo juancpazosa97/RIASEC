@@ -1,0 +1,506 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Taller de Contratación</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root{
+  --bg:#f6f7fb; --surface:#ffffff; --ink:#1b2333; --muted:#5d6678; --line:#dde2ee;
+  --brand:#1f3864; --brand-2:#2e5597; --brand-soft:#e3eaf7; --btn-ink:#ffffff;
+  --user:#e3eaf7; --bot:#ffffff; --note:#fff4d6; --note-ink:#5a4300;
+  --g:#2e7d32; --y:#b26a00; --r:#c62828; --gbg:#e4f3e5; --ybg:#fff1d6; --rbg:#fde4e4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1420; --surface:#171e2e; --ink:#e8ecf5; --muted:#a2abbd; --line:#2a3348;
+    --brand:#8fb0ee; --brand-2:#6f96e0; --brand-soft:#1f2a44; --btn-ink:#0f1420;
+    --user:#22304f; --bot:#171e2e; --note:#3a2f12; --note-ink:#f2dfa6;
+    --g:#7fd18a; --y:#f0b95a; --r:#ff8a8a; --gbg:#183321; --ybg:#3a2f12; --rbg:#3d1d1d;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1420; --surface:#171e2e; --ink:#e8ecf5; --muted:#a2abbd; --line:#2a3348;
+  --brand:#8fb0ee; --brand-2:#6f96e0; --brand-soft:#1f2a44; --btn-ink:#0f1420;
+  --user:#22304f; --bot:#171e2e; --note:#3a2f12; --note-ink:#f2dfa6;
+  --g:#7fd18a; --y:#f0b95a; --r:#ff8a8a; --gbg:#183321; --ybg:#3a2f12; --rbg:#3d1d1d;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  padding:20px max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px));}
+.wrap{max-width:900px;margin:0 auto}
+h1{margin:0 0 2px;font-size:1.6rem;color:var(--brand);letter-spacing:-.01em}
+.sub{margin:0;color:var(--muted);font-size:.93rem}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:6px 12px;font:inherit;font-size:.88rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--brand-2);border-color:var(--brand-2);color:var(--btn-ink);font-weight:600}
+nav{display:flex;gap:2px;margin:14px 0;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+nav button{background:none;border:0;border-bottom:3px solid transparent;padding:10px 11px;font:inherit;color:var(--muted);cursor:pointer;font-weight:600;font-size:.93rem}
+nav button[aria-selected="true"]{color:var(--brand);border-bottom-color:var(--brand-2)}
+section[hidden]{display:none}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.card h2{margin:0 0 6px;font-size:1.1rem;color:var(--brand)}
+.card h3{margin:14px 0 4px;font-size:1rem;color:var(--brand)}
+.muted{color:var(--muted);font-size:.92rem}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:6px 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--brand-soft);color:var(--brand)}
+.tw{overflow-x:auto}
+.btn{background:var(--brand-2);color:var(--btn-ink);border:0;border-radius:9px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer}
+.btn.alt{background:var(--surface);color:var(--brand);border:1px solid var(--brand-2)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.note{background:var(--note);color:var(--note-ink);border-radius:10px;padding:10px 12px;font-size:.9rem;margin:10px 0}
+textarea,select{width:100%;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:9px}
+textarea{resize:vertical}
+.cbq{margin:6px 0 10px;padding-left:20px}
+.badge{display:inline-block;border-radius:99px;padding:0 8px;font-size:.75rem;font-weight:700}
+.badge.v{background:var(--ybg);color:var(--y)}
+.sg{padding:6px 8px;border-radius:8px;font-weight:600}
+.sg-g{background:var(--gbg);color:var(--g)} .sg-y{background:var(--ybg);color:var(--y)} .sg-r{background:var(--rbg);color:var(--r)}
+.tally{display:flex;gap:8px;margin:8px 0}
+.tally span{flex:1;text-align:center;border-radius:8px;padding:6px;font-weight:700}
+details{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:8px 0;background:var(--surface)}
+summary{cursor:pointer;font-weight:600;color:var(--brand)}
+#chatbox{scroll-margin-top:12px}
+#chat{display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto;padding:4px 2px;margin-bottom:10px}
+.msg{padding:10px 12px;border-radius:12px;border:1px solid var(--line);max-width:92%;overflow-wrap:anywhere}
+.msg.bot{background:var(--bot);align-self:flex-start}
+.msg.user{background:var(--user);align-self:flex-end}
+.msg .who{display:block;font-size:.75rem;color:var(--muted);margin-bottom:2px;font-weight:600}
+.msg p{margin:0 0 6px}.msg p:last-child{margin:0}
+.msg ul{margin:4px 0 6px;padding-left:20px}
+.status{color:var(--muted);font-size:.85rem;min-height:1.2em;margin:4px 0}
+pre.prompt{white-space:pre-wrap;word-break:break-word;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;max-height:320px;overflow:auto;font-size:.8rem}
+ul.clean{margin:6px 0;padding-left:20px}
+.pill{display:inline-block;background:var(--brand-soft);color:var(--brand);border-radius:99px;padding:1px 10px;font-size:.8rem;font-weight:600}
+@media (max-width:480px){ .msg{max-width:100%} }
+</style>
+
+<div class="wrap">
+<h1>Taller de contratación laboral</h1>
+<p class="sub">Marco Legal de los Negocios · Universidad Sergio Arboleda, PRIME Business School · Ley 2466 de 2025</p>
+
+<div class="chips" id="chips" aria-label="Empresa"></div>
+<p class="muted" id="empdesc" style="margin:4px 0 0"></p>
+
+<nav role="tablist" id="nav">
+  <button role="tab" data-tab="s1" aria-selected="true">1. Organigrama</button>
+  <button role="tab" data-tab="s2" aria-selected="false">2. Curveballs</button>
+  <button role="tab" data-tab="s3" aria-selected="false">3. Auditoría</button>
+  <button role="tab" data-tab="s4" aria-selected="false">4. Ley y rúbrica</button>
+  <button role="tab" data-tab="b" aria-selected="false">Plan B</button>
+  <button role="tab" data-tab="ev" aria-selected="false">Evaluadores</button>
+</nav>
+
+<!-- 1 ORGANIGRAMA -->
+<section id="s1">
+  <div class="card">
+    <h2>Organigrama y matriz de contratación</h2>
+    <p class="muted">Así presentó la empresa sus cargos. Es lo que el grupo explica al curso y lo que luego audita otro grupo.</p>
+    <div id="org"></div>
+  </div>
+  <div class="card">
+    <h2>Retroalimentación al organigrama</h2>
+    <div id="fb"></div>
+  </div>
+</section>
+
+<!-- 2 CURVEBALLS -->
+<section id="s2" hidden>
+  <div id="cbs"></div>
+</section>
+
+<!-- 3 AUDITORIA -->
+<section id="s3" hidden>
+  <div class="card">
+    <h2>Auditoría cruzada</h2>
+    <p class="muted" id="audintro"></p>
+    <h3>Organigrama auditado</h3>
+    <div id="audorg"></div>
+  </div>
+  <div class="card">
+    <h2>Hoja de auditoría</h2>
+    <p class="muted">Marca el semáforo de cada criterio y escribe el hallazgo y la recomendación. Un color sin hallazgo no cuenta.</p>
+    <div class="tw"><table id="sheet"></table></div>
+    <div class="tally" id="tally"></div>
+    <div class="row" style="margin-top:8px">
+      <button class="btn" id="tribunal">Defender mi auditoría ante el tribunal (IA)</button>
+      <span class="status" id="auditstatus"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 4 LEY -->
+<section id="s4" hidden>
+  <div class="card">
+    <h2>Hoja de referencia: base legal verificada</h2>
+    <p class="muted">Es la única base que el inspector y el tribunal usan como segura.</p>
+    <div class="tw"><table><thead><tr><th>Tema</th><th>Norma</th></tr></thead><tbody id="legaltable"></tbody></table></div>
+  </div>
+  <div class="card">
+    <h2>Rúbrica del semáforo</h2>
+    <div class="tw"><table>
+      <tr><td class="sg-g"><b>Verde</b></td><td>Cumple. El contrato corresponde a la realidad y está bien fundamentado.</td></tr>
+      <tr><td class="sg-y"><b>Amarillo</b></td><td>Cumple en parte o falta fundamento.</td></tr>
+      <tr><td class="sg-r"><b>Rojo</b></td><td>Error que cambia la naturaleza del contrato o riesgo que no vieron.</td></tr>
+    </table></div>
+    <p class="muted" style="margin-bottom:0">Criterios: 1. Tipo de contrato · 2. Base legal · 3. Primacía de la realidad · 4. Modalidad con nombre legal · 5. Obligaciones · 6. Cláusula estrella.</p>
+  </div>
+  <div class="card">
+    <h2>Citas del taller que deben verificarse</h2>
+    <p class="muted">Aparecen marcadas como (verificar) en la retroalimentación. Confírmalas en el texto oficial antes de usarlas en un trabajo.</p>
+    <ul class="clean" id="verif"></ul>
+  </div>
+</section>
+
+<!-- PLAN B -->
+<section id="b" hidden>
+  <div class="card">
+    <h2>Plan B: usa el inspector en otra IA</h2>
+    <p>Si no tienes cuenta de Claude, copia este prompt y pégalo como primer mensaje en ChatGPT, Gemini o Claude.</p>
+    <label for="bcase" style="font-weight:600">Situación</label>
+    <select id="bcase"></select>
+    <div class="row" style="margin:10px 0">
+      <button class="btn" id="copy">Copiar prompt</button>
+      <span class="status" id="copystatus"></span>
+    </div>
+    <pre class="prompt" id="bprompt"></pre>
+  </div>
+</section>
+
+<!-- EVALUADORES -->
+<section id="ev" hidden>
+  <div class="card">
+    <h2>¿Qué es?</h2>
+    <p>Réplica digital de un taller presencial de <b>Marco Legal de los Negocios</b>. Cada grupo presenta el organigrama de su empresa, recibe retroalimentación, resuelve dos curveballs de contratación (Ley 2466 de 2025) y es auditado por otro grupo. Aquí está el recorrido completo, con una IA que hace de inspector del Ministerio de Trabajo y de tribunal de la auditoría.</p>
+    <p style="margin:0">Las empresas son ficticias, construidas a partir de casos reales del curso con nombres y datos anonimizados.</p>
+  </div>
+  <div class="card">
+    <h2>Recorrido</h2>
+    <ol class="clean">
+      <li><b>Organigrama:</b> matriz de cargos y contratos, lo que está bien y las correcciones con su base legal.</li>
+      <li><b>Curveballs:</b> dos situaciones inesperadas por empresa, con preguntas guía. El grupo escribe su respuesta y la debate con el inspector (IA).</li>
+      <li><b>Auditoría:</b> otro grupo revisa el organigrama con la hoja de semáforo (6 criterios) y defiende sus hallazgos ante el tribunal (IA).</li>
+      <li><b>Ley y rúbrica:</b> la hoja de referencia visible, con las citas pendientes de verificar.</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h2>Alineación pedagógica (línea: dinamización)</h2>
+    <ul class="clean">
+      <li><b>Aprendizaje activo basado en casos:</b> el estudiante decide y defiende, no recibe una clase.</li>
+      <li><b>Guía, no respuesta:</b> la IA pregunta y repregunta; ante la petición de la solución, da una pista.</li>
+      <li><b>Retroalimentación inmediata</b> con la rúbrica del curso (semáforo de 6 criterios).</li>
+      <li><b>Evaluación entre pares:</b> la auditoría cruzada se prepara y se contrasta con el tribunal.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Cómo probarlo en 2 minutos</h2>
+    <ol class="clean">
+      <li>Elige <b>Frío Andino</b>. Revisa el organigrama y sus correcciones (paso 1).</li>
+      <li>En el paso 2, escribe algo débil en el Curveball A ("van por obra o labor porque ganan comisión") y pulsa <b>Debatir con el inspector</b>. Observa cómo objeta.</li>
+      <li>Pídele la respuesta directa: debe dar una pista, no la solución. Pregúntale algo fuera de la hoja de ley: debe decir que no tiene base verificada.</li>
+      <li>En el paso 3, marca un semáforo con hallazgo y pulsa <b>Defender ante el tribunal</b>.</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h2>Uso ético y límites</h2>
+    <ul class="clean">
+      <li><b>Privacidad:</b> no se piden ni se guardan datos personales. Lo que escribes vive solo en tu pantalla.</li>
+      <li><b>Transparencia:</b> la IA se presenta como IA que simula una inspección con fines pedagógicos.</li>
+      <li><b>Base legal cerrada:</b> solo cita la hoja de referencia; fuera de ella dice que no tiene base verificada.</li>
+      <li><b>Sesgos y errores:</b> puede equivocarse o ser demasiado severa o complaciente; por eso pide razonamiento y remite a la norma. No sustituye al docente ni a un abogado.</li>
+      <li><b>Cuenta:</b> las respuestas usan la cuenta de Claude de quien abre la página. Sin cuenta, el Plan B.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAT (compartido) -->
+<div id="chatbox" hidden>
+  <div class="card" style="padding:10px 14px">
+    <div class="row" style="justify-content:space-between">
+      <span class="pill" id="roomtag"></span>
+      <div class="row">
+        <button class="btn alt" id="hint">Pedir pista</button>
+        <button class="btn alt" id="evalbtn">Pedir evaluación</button>
+        <button class="btn alt" id="close">Cerrar</button>
+      </div>
+    </div>
+  </div>
+  <div id="chat" aria-live="polite"></div>
+  <div class="status" id="status"></div>
+  <textarea id="input" rows="3" placeholder="Responde con tu razonamiento (Ctrl+Enter para enviar)"></textarea>
+  <div class="row" style="margin-top:8px">
+    <button class="btn" id="send">Enviar</button>
+    <button class="btn alt" id="stop" hidden>Detener</button>
+  </div>
+  <div class="note">Esta IA simula la inspección con fines pedagógicos; no es autoridad real ni asesoría jurídica. Verifica en la norma y no escribas datos personales.</div>
+</div>
+<div class="note" id="nosample" hidden>El simulador en vivo no está disponible aquí. Usa la pestaña <b>Plan B</b>: copia el prompt y pégalo en ChatGPT, Gemini o Claude.</div>
+</div>
+
+<script>
+(function(){
+"use strict";
+const CASES = [{"id":"mintbq","nombre":"Dulce Brisa S.A.S.","giro":"Fabricación y comercio electrónico, con venta a farmacias y tiendas.","auditor":"Pixel Sur","rev":["¿Decidieron con razones si el community manager es contratista o empleado? ¿Qué cargo de bodega es indefinido, cuál fijo y qué hace el aprendiz?","¿Respetan en el fijo el tope de 4 años, las prórrogas por escrito y la regla de la cuarta prórroga (art. 6)? ¿Citan el art. 21 para el aprendiz?","¿Reconocen en el community manager el horario, el correo corporativo, el permiso para ausentarse y la exclusividad?","¿Convirtieron \"híbrido\", \"remoto\" y \"campo\" en figuras legales con sus obligaciones?","¿Dicen si la comisión del ejecutivo comercial es salarial y su riesgo ARL? ¿Hay responsable de SG-SST?","¿La cláusula de duración y prórrogas respeta el tope y la forma escrita?"],"matriz":[["Gerente general y representante legal","Indefinido · híbrido"],["Director de marketing y comercial","Indefinido · híbrido"],["Jefe de producción y calidad","Indefinido · presencial"],["Operario de empaque y bodega","Término fijo · presencial"],["Aprendiz de logística","Aprendizaje · presencial"],["Community manager y diseño","Prestación de servicios · remoto"],["Ejecutivo comercial","Indefinido, salario + comisión · campo"],["Asistente de e-commerce","Término fijo · remoto"],["Contador (externo)","Prestación de servicios"],["Abogado (externo)","Prestación de servicios"]],"bien":["El cuadro de cargos (ocupante, funciones, contrato, modalidad y dependencia) es el formato correcto: otro grupo puede auditarlo sin preguntarles nada.","La tabla de tipos de contrato trae una columna de \"aspectos a tener en cuenta\" y ya advierte el riesgo de primacía de la realidad en la prestación de servicios.","Separan al accionista del empleado y dejan marcado lo que está pendiente (representante legal, 30 % reservado, nombre del cargo de uno de los fundadores)."],"correcciones":[["Community manager y diseño va por prestación de servicios, pero el cuadro lo hace depender del Director de marketing.","Primacía de la realidad: si hay servicio personal, subordinación y remuneración, es relación laboral aunque el contrato diga otra cosa (Constitución art. 53; CST art. 23).","O quitan la dependencia jerárquica y pactan entregables, medios propios y honorarios por entregable, o lo pasan a contrato laboral. Decidan y expliquen."],["Las modalidades \"híbrido\", \"remoto\" y \"campo\" no son figuras legales.","Teletrabajo (Ley 1221 de 2008, art. 2: autónomo, móvil y suplementario), trabajo en casa (Ley 2088 de 2021) y trabajo remoto (Ley 2121 de 2021).","Asignen a cada cargo su figura legal y sus obligaciones (acuerdo escrito, equipos, auxilio de conectividad, ARL). Dos o tres días por semana en casa = suplementario."],["Operario de empaque y asistente de e-commerce van a término fijo, pero sus funciones parecen permanentes; la nota dice \"debe justificarse conforme a la Ley 2466\" y no lo justifica.","Ley 2466 de 2025, art. 5: el indefinido es la regla general. Art. 6: el fijo debe constar por escrito, dura máximo 4 años y tiene reglas de prórroga; si falla la forma, se entiende indefinido desde el inicio.","Escriban para cada fijo qué necesidad atiende y cuánto dura, con plazo inicial y prórrogas. Si no pueden, cámbienlo a indefinido."],["Los dos fundadores quedan con indefinido, sin explicar de dónde sale el salario si todavía no hay ingresos.","Ser accionista no genera contrato; la relación laboral exige subordinación y remuneración (CST art. 23).","Elijan una vía (laboral, solo societaria o mixta) y justifiquen: salario, quién ejerce la subordinación y aportes desde el primer día."],["El ejecutivo comercial tiene salario más comisión y trabaja en campo, sin decir si la comisión es salarial ni su riesgo.","La comisión retribuye directamente el servicio y se trata como salario (CST art. 127, verificar). Las visitas a clientes elevan el riesgo ARL.","Indiquen si la comisión es salarial, cómo entra en aportes y prestaciones, y la clase de riesgo ARL del cargo."],["El aprendiz de logística reporta al Jefe de producción y hace despachos, inventario y entregas.","Ley 2466, art. 21: contrato laboral especial a término fijo, máximo 3 años, con apoyo de sostenimiento (75 % en etapa lectiva y 100 % en la práctica; para universitarios, no menos de 1 SMMLV). La subordinación se limita a las actividades del aprendizaje.","Agreguen el plan de formación que respalda el cargo y aclaren que no reemplaza a un operario."]],"recomendaciones":["Agreguen rangos salariales: así saben quién supera 2 SMMLV (auxilio de transporte o de conectividad) y pueden calcular el costo mensual.","Designen un responsable del SG-SST (Decreto 1072 de 2015, verificar) para planta y bodega.","Corrijan el nombre del cargo de uno de los fundadores para que coincida con el contrato modelo (ya lo habían marcado)."],"curveballs":[{"t":"Curveball A. El community manager que no era independiente","e":"Dos meses después de firmar prestación de servicios, el Director de marketing le exige conectarse de 8 a.m. a 5 p.m., usar el correo corporativo, pedir permiso para ausentarse y no aceptar otros clientes. A los cuatro meses, el community manager reclama prima, cesantías y vacaciones.","q":["¿Qué elementos del contrato de trabajo concurren aquí y qué riesgo asume Dulce Brisa?","¿Qué debieron hacer distinto desde el primer día?","Reclasifiquen el cargo: o restablecen la autonomía real, o lo pasan a laboral con su modalidad (¿teletrabajo, trabajo remoto?).","¿Quién es titular de las piezas gráficas que creó? Redacten qué debe decir la cesión de derechos."]},{"t":"Curveball B. Diciembre en la bodega","e":"Es temporada alta. El operario de empaque (fijo de 6 meses) ya fue prorrogado dos veces para la misma función. El aprendiz de logística termina empacando y despachando solo los fines de semana. El Jefe de producción pide renovar otra vez \"para no complicarnos\".","q":["¿Cuántas prórrogas pueden hacer y cuál es el tope total?","¿Qué pasa si una prórroga no consta por escrito?","¿Qué problema tiene usar al aprendiz así?","Reescriban la política de bodega: qué cargo es indefinido, cuál es fijo y por qué, y qué hace el aprendiz."]}],"clausula":"Redacten la cláusula de **duración, prórrogas y terminación** del contrato del operario de empaque (o, si lo pasan a indefinido, la cláusula de objeto y funciones con período de prueba)."},{"id":"congelados","nombre":"Frío Andino S.A.S.","giro":"Cadena de alimentos congelados para venta institucional y digital.","auditor":"Casa Isleña","rev":["¿Cambiaron el contrato de los asesores de ventas? ¿Definieron el vínculo del gerente y de los directores?","¿Aplican el art. 6 de la Ley 2466 sobre obra o labor y el indefinido como regla general?","¿Ven que vender no es una obra con final y que la comisión retribuye el servicio?","¿Asignan figura legal al \"híbrido\" de la coordinadora digital?","¿Hay turnos, noche, festivos con recargo, ARL para el conductor y el trabajo en frío, y SG-SST?","¿La cláusula de remuneración define base, comisión, periodicidad, metas y naturaleza salarial?"],"matriz":[["Gerente general","Sin definir"],["Director operativo","Sin definir"],["Director comercial","Sin definir"],["Director de transformación digital","Sin definir"],["Operario de planta 01","Indefinido · 42 h"],["Operario de planta 02","Indefinido · 42 h"],["Conductor de vehículo refrigerado","Indefinido"],["Asesores de ventas","Obra o labor, sueldo básico + comisiones"],["Coordinadora de plataforma digital","Indefinido · híbrido"],["Asesoría legal y abogados","Prestación de servicios"],["Asesoría contable y tributaria","Prestación de servicios"]],"bien":["El organigrama tiene niveles claros (asamblea, gerente, directores de área, personal de planta) y separa las asesorías externas, que van por prestación de servicios.","Indican el tipo de contrato y, para los operarios, la jornada de 42 horas semanales, que es la jornada vigente desde julio de 2026.","Hay una lógica por área (operativa, comercial, digital) que permite ver quién depende de quién."],"correcciones":[["El archivo entregado es solo el organigrama: no explica por qué cada contrato, ni modalidades, ni obligaciones.","El trabajo pide justificar el tipo de contrato por cargo, las modalidades, la seguridad social y prestaciones, y la asesoría externa.","Completen la justificación por cargo. Si ya la entregaron en otro archivo, anéxenla a esta hoja."],["Los asesores de ventas van por obra o labor, con sueldo básico más comisiones.","Ley 2466, art. 6: la obra o labor debe constar por escrito y describirse con precisión; si el trabajador sigue después de terminada la obra y sin una nueva, el contrato se considera indefinido desde el inicio. Vender es una función permanente, no una obra con fin.","Cambien a indefinido (o a fijo con justificación) y definan si la comisión es salarial."],["Gerente general y los tres directores no tienen tipo de contrato ni modalidad.","Ser accionista no genera contrato; la relación laboral exige subordinación y remuneración (CST art. 23).","Definan quién es el gerente (un fundador o un tercero) y cómo se vincula cada director: laboral, societario o ambos."],["La Coordinadora digital queda con \"trabajo híbrido\".","Ley 1221 de 2008, art. 2: teletrabajo suplementario (dos o tres días por semana en casa); o trabajo en casa (Ley 2088 de 2021).","Indiquen la figura legal, el auxilio de conectividad si gana hasta 2 SMMLV y la cobertura ARL."],["La cadena de frío tiene solo 2 operarios y 1 conductor, y no se ve cómo cubren turnos, noches y fines de semana.","Jornada de 42 horas desde el 15 de julio de 2026; jornada nocturna desde las 7 p.m. (Ley 2466, art. 10); recargo dominical y festivo del 90 % desde el 1 de julio de 2026 (Ley 2466, art. 14, régimen transitorio).","Armen una grilla de turnos y calculen recargos; decidan cuándo la operación exige más personal."],["No se menciona el riesgo del conductor ni de la planta (trabajo en frío).","Afiliación a ARL según la clase de riesgo y SG-SST (Decreto 1072 de 2015, verificar); dotación para quienes ganan hasta 2 SMMLV (CST art. 230, verificar).","Indiquen clase de riesgo, elementos de protección y responsable del SG-SST."]],"recomendaciones":["Agreguen salarios por cargo para calcular el costo total y los auxilios.","Aclaren si los accionistas (los fundadores) ocupan alguno de los cargos de dirección.","Para una operación 7 días a la semana, consideren un cargo de reemplazo o de apoyo rotativo."],"curveballs":[{"t":"Curveball A. La obra que nunca termina","e":"Los tres asesores de ventas fueron contratados \"por obra o labor: vender a restaurantes y supermercados\". Un año después siguen vendiendo, cambiaron de zona y el gerente les fija metas mensuales. Uno reclama que su contrato es indefinido. Además, la comisión fue el 40 % de su ingreso y no se tuvo en cuenta al liquidar sus cesantías.","q":["¿Cuál era la obra? ¿Se puede describir con precisión y tiene un final?","¿Qué pasa hoy con ese contrato según la Ley 2466?","¿La comisión hace parte del salario? ¿Qué efecto tiene en prestaciones y aportes?","Reclasifiquen el cargo y redacten la cláusula de remuneración (salario base más comisión) con reglas claras."]},{"t":"Curveball B. Entrega a las 5 a.m.","e":"Los supermercados exigen entregas a las 5 a.m., incluidos domingos y festivos. Con 2 operarios y 1 conductor de 42 horas semanales, el conductor termina trabajando 55 horas, de noche y en festivo, y sufre un accidente al descargar en el cuarto frío.","q":["¿Desde qué hora es jornada nocturna y qué recargos se causan por noche, domingo y festivo?","¿Qué debía existir para atender el accidente (ARL, SG-SST, elementos de protección)?","Rediseñen turnos y planta mínima para cubrir la operación sin superar los límites.","¿Qué alternativa de contratación proponen para los picos (fijo, tercerización)? Justifiquen."]}],"clausula":"Redacten la cláusula de **remuneración** del asesor de ventas: salario base, comisión (porcentaje y periodicidad), naturaleza salarial y metas."},{"id":"sporthub","nombre":"Cancha Norte S.A.S.","giro":"Centro deportivo con canchas, pádel, minigolf y cafetería.","auditor":"Mercado Caribe","rev":["¿Justifican por qué fijo y no indefinido con período de prueba para administrador, recepción, coordinador y community manager? ¿Qué decidieron con los árbitros?","¿Citan la Ley 2466 (arts. 5 y 6) con lo que realmente dicen? ¿Recalcularon los aportes con la exoneración del art. 114-1 del Estatuto Tributario?","¿Detectan en los árbitros el uniforme, el horario fijo, las sanciones y el reemplazo con aviso?","¿Nombran cada modalidad (presencial, teletrabajo suplementario, etc.) o repiten \"híbrida\" sin definir?","¿Hay turnos, recargo nocturno (desde las 7 p.m.), recargo de domingo y festivo, jornada de 42 horas, ARL y dotación?","¿La cláusula del árbitro dice objeto, autonomía y seguridad social, y se puede aplicar al caso?"],"matriz":[["Administrador / Gerente general","Fijo (6 o 12 meses) · híbrido"],["Encargado de recepción y reservas","Fijo · presencial"],["Personal de cafetería (x2)","Indefinido · presencial"],["Operarios de mantenimiento (x2)","Indefinido · presencial"],["Coordinador de eventos y torneos","Fijo · híbrido"],["Community manager / auxiliar de marketing","Fijo · híbrido"],["Asesores externos (contabilidad, legal, soporte app)","Prestación de servicios"],["Árbitros eventuales","Prestación de servicios"]],"bien":["Responden las cinco preguntas del trabajo de forma ordenada y con justificación por tipo de contrato.","Identifican que la operación nocturna y de fin de semana genera recargos, y que mantenimiento y cafetería requieren dotación y elementos de protección.","Distinguen modalidad presencial de híbrida y argumentan la autonomía de los asesores por prestación de servicios."],"correcciones":[["Cuatro cargos (administrador, recepción, coordinador de eventos y community manager) van a fijo de 6 o 12 meses \"para evaluar desempeño\", mientras mantenimiento y cafetería van a indefinido.","Ley 2466, art. 5: el indefinido es la regla general. Art. 6: el fijo se hace por escrito, dura máximo 4 años, y después de la cuarta prórroga no puede renovarse por menos de un año. Evaluar desempeño es la función del período de prueba (CST arts. 76 a 80, verificar).","Expliquen por qué fijo y no indefinido con período de prueba, y cuántas prórrogas prevén. Revisen la lógica: administrador y recepción parecen cargos permanentes."],["Presentan como obligatorios salud 8,5 %, SENA 2 % e ICBF 3 % a cargo del empleador.","Estatuto Tributario, art. 114-1: las sociedades declarantes de renta quedan exoneradas de aportes a salud (empleador), SENA e ICBF por los trabajadores que ganen menos de 10 SMMLV. El artículo no menciona la caja de compensación.","Analicen si Cancha Norte cumple las condiciones y recalculen: pensión, ARL y caja siguen siendo costo."],["\"Contabilidad/Revisoría Fiscal\" aparece como prestación de servicios.","Contador y revisor fiscal son figuras distintas; la revisoría fiscal solo es obligatoria al superar topes legales (Ley 43 de 1990, art. 13, parágrafo 2, verificar).","Separen: contador externo (prestación de servicios) y revisoría fiscal solo si aplica."],["Operan de noche y en fin de semana, pero hablan de recargos de forma general.","Jornada nocturna desde las 7 p.m. (Ley 2466, art. 10); jornada máxima de 42 horas desde el 15 de julio de 2026; recargo dominical y festivo del 90 % desde el 1 de julio de 2026 (Ley 2466, art. 14, transitorio).","Definan turnos por cargo y estimen el costo mensual de recargos."],["Árbitros eventuales y quien hace el logo, el jingle y la app van por prestación de servicios sin cláusulas de propiedad intelectual ni de autonomía.","Primacía de la realidad (CST art. 23); los derechos patrimoniales de autor se ceden por escrito.","Agreguen cesión de derechos para logo, jingle, app y sitio web, y criterios de autonomía para los árbitros."],["No hay organigrama: no se ve quién reporta a quién.","Sin líneas de mando no se puede auditar la subordinación.","Dibujen el organigrama e indiquen si el administrador es socio."]],"recomendaciones":["Agreguen salarios por cargo para saber quién recibe auxilio de transporte (hasta 2 SMMLV).","Si el administrador es socio, definan si tendrá contrato laboral o solo vínculo societario.","Incluyan un cargo de reemplazo para los turnos de noche y fin de semana."],"curveballs":[{"t":"Curveball A. \"Para evaluar desempeño\"","e":"Seis meses después, el administrador (fijo de 6 meses) pide indefinido y los socios no quieren comprometerse. La recepcionista (fijo) llega a su tercer vencimiento y nadie envió aviso. La prórroga del coordinador de eventos se acordó de palabra.","q":["¿Qué ocurre si ninguna parte avisa con 30 días de antelación?","¿Qué pasa con la prórroga que no consta por escrito?","¿Cuál era la figura correcta para \"evaluar desempeño\"?","Reclasifiquen los cuatro cargos y justifiquen cada decisión (contrato, plazo, prórrogas)."]},{"t":"Curveball B. Los árbitros de los sábados","e":"Seis árbitros \"eventuales\" arbitran todos los sábados y domingos de torneo. Usan el uniforme del complejo, tienen horario fijo, el coordinador los sanciona si llegan tarde y deben avisar para ser reemplazados. Uno se lesiona en la cancha.","q":["¿Es prestación de servicios o relación laboral? Señalen los indicios.","¿Quién responde por el accidente y qué debió estar afiliado?","Propongan el modelo de vinculación (laboral, trabajo ocasional o prestación de servicios genuina).","Redacten la cláusula de objeto y autonomía del árbitro."]}],"clausula":"Redacten la cláusula de **objeto, autonomía y seguridad social** del árbitro (si lo mantienen como prestación de servicios) o la cláusula de jornada y turnos (si lo pasan a laboral)."},{"id":"sai","nombre":"Casa Isleña S.A.S.","giro":"Plataforma de intermediación turística de posadas nativas en San Andrés.","auditor":"Dulce Brisa","rev":["¿Decidieron marketing, auxiliar de soporte y representante legal, o dejaron el \"o\" abierto? ¿El CTO queda con una sola figura clara?","¿Citan bien la Ley 1258 (art. 10) y el criterio de la Superintendencia de Sociedades? ¿Corrigieron la cita del art. 20?","¿Distinguen el aporte de industria de la relación laboral? ¿Resuelven de quién es el código?","¿Definen la modalidad y los turnos del auxiliar de soporte?","¿Aplican jornada nocturna desde las 7 p.m., recargos, 42 horas y desconexión laboral?","¿La cláusula cede derechos patrimoniales sobre el código, con alcance y duración, e incluye confidencialidad?"],"matriz":[["Representante legal / Gerencia general","Comercial/societaria o laboral (sin decidir)"],["Director de Tecnología (CTO)","Accionista de pago/trabajo + PS o laboral"],["Coordinador(a) de alianzas y experiencia del cliente","Fijo de 6 meses"],["Especialista en marketing digital","Fijo 3-6 meses o PS (sin decidir)"],["Auxiliar operativo / soporte al cliente","Fijo o indefinido (sin decidir)"],["Asesores externos (contable, jurídico, software puntual)","Prestación de servicios"]],"bien":["Estructura clara de roles y análisis real de los criterios de subordinación para el coordinador (horario, instrucciones, sede).","Conectan la contratación con la normativa del sector (Ley 300 de 1996, Ley 1480 de 2011, Ley 1581 de 2012) y con la verificación de aportes del contratista (PILAS).","Describen las implicaciones del contrato para empleador y trabajador, no solo el tipo de contrato."],"correcciones":[["Tres cargos quedan con la decisión abierta: Marketing (\"laboral o prestación de servicios\"), Auxiliar de soporte (\"fijo o indefinido\") y Representante legal (\"comercial/societaria o laboral\").","Primacía de la realidad (CST art. 23); Ley 2466, arts. 5 y 6.","Decidan y justifiquen con hechos: horario, exclusividad, medios, quién da órdenes, si la necesidad es permanente o estacional."],["El CTO aparece como accionista de pago/trabajo \"complementado\" con prestación de servicios o contrato laboral: mezcla tres figuras.","Ley 1258 de 2008, art. 10: permite crear clases y series de acciones, incluidas las acciones de pago. La Superintendencia de Sociedades (Oficio 220-023136 de 2010) considera procedente el aporte de industria en la SAS.","Elijan: solo aporte de industria (sin salario, con participación) o, además, un vínculo remunerado por dedicación adicional. Definan quién es titular del código."],["Citan los \"artículos 10 y 20\" de la Ley 1258 de 2008.","No se pudo confirmar el contenido del art. 20 en las fuentes consultadas.","Verifiquen el art. 20 en el texto oficial y cítenlo con exactitud."],["Para el representante legal citan el art. 198 del Código de Comercio.","En la SAS la representación legal se rige por la Ley 1258 de 2008 y los estatutos.","Revisen la cita y precisen quién es el representante legal y cuál es su vínculo."],["Mencionan la jornada máxima y los recargos de forma general, y el soporte atiende por WhatsApp en tiempo real.","Jornada de 42 horas desde el 15 de julio de 2026; nocturno desde las 7 p.m. (Ley 2466, art. 10); recargo dominical y festivo del 90 % desde el 1 de julio de 2026; desconexión laboral (Ley 2191 de 2022, que ya citan).","Apliquen estas reglas al auxiliar de soporte: turnos, recargos y límites de contacto."],["No hay salarios ni costos por cargo.","Sin salario no se sabe si aplica auxilio de transporte (hasta 2 SMMLV) ni el costo real de cada vínculo.","Agreguen rangos salariales y un costo mensual aproximado."]],"recomendaciones":["Incluyan un organigrama gráfico con líneas de dependencia.","Si el CTO conserva su aporte de industria, anexen al borrador de estatutos la cláusula correspondiente.","Para la estacionalidad del turismo, evalúen qué cargos son realmente de temporada."],"curveballs":[{"t":"Curveball A. El CTO de las 60 horas","e":"el CTO es accionista de industria con aporte de trabajo y no firmó contrato. En Semana Santa la plataforma se cae un domingo, él trabaja 60 horas esa semana y pide pago extra. Luego discute con la gerente y quiere irse \"con el código, porque lo escribió él\".","q":["¿Qué vínculo tiene hoy: societario, laboral o ambos?","¿Tiene derecho a pago extra por las 60 horas? ¿De qué depende?","¿De quién es el código y qué debió firmarse antes de empezar?","Redacten la cláusula de propiedad intelectual y confidencialidad para el CTO."]},{"t":"Curveball B. WhatsApp a las 11 p.m.","e":"El auxiliar de soporte recibe mensajes de turistas hasta la medianoche en temporada alta y la gerente le exige responder de inmediato. En temporada baja casi no hay trabajo.","q":["Elijan el contrato que se ajusta a una demanda estacional y justifíquenlo.","¿Desde qué hora es jornada nocturna y qué recargos se causan?","¿Qué dice el derecho a la desconexión laboral y cómo lo respetan sin perder el servicio?","Propongan una grilla de turnos o una alternativa operativa para cubrir la noche."]}],"clausula":"Redacten la cláusula de **propiedad intelectual y confidencialidad** del CTO (cesión de derechos patrimoniales sobre el código, alcance y duración)."},{"id":"novaquant","nombre":"Pixel Sur S.A.S.","giro":"Agencia que implementa IA para contenido multimedia, publicidad y automatizaciones.","auditor":"Cancha Norte","rev":["¿Reclasificaron al editor y a la copywriter si había subordinación? ¿Qué hicieron con el especialista de obra continuada y con la aprendiz?","¿Aplican bien el art. 6 (obra o labor que continúa tras terminar) y el art. 21 (aprendizaje) de la Ley 2466?","¿Identifican horario impuesto, correo corporativo y aprobación jerárquica como indicios de subordinación?","¿Asignan una figura legal (teletrabajo, trabajo en casa o remoto) al \"híbrido de 42 horas\"?","¿Hay política de IA, confidencialidad y protección de datos? ¿Ajustaron el costo del aprendiz?","¿La cláusula de IA lista herramientas aprobadas, prohíbe cargar datos del cliente, exige revisión humana y regula la propiedad intelectual?"],"matriz":[["Gerente general / representante legal","Indefinido · híbrido"],["Director(a) de Tecnología e IA (CTO)","Indefinido · híbrido"],["Diseñador(a) gráfico y motion con IA","Fijo 12 meses"],["Analista de datos y métricas","Fijo 12 meses"],["Analista de QA y gobierno de IA","Fijo 12 meses"],["Especialista de implementación por proyecto","Obra o labor"],["Editor(a) de video y audio con IA","Prestación de servicios"],["Copywriter / guionista con IA","Prestación de servicios"],["Auxiliar de soporte y operaciones","Aprendizaje"]],"bien":["Es el modelo más completo del curso: 18 cargos, tres planes de servicio, costo mensual y anual, y criterio de asignación de contratos.","Cada tipo de contrato tiene su base legal, forma, período de prueba, obligaciones, terminación y riesgos.","La hoja de cláusulas es excelente: propiedad intelectual, política de uso de IA, datos personales, autonomía del contratista y seguridad de la información."],"correcciones":[["Editor de video, copywriter, contador y asesor jurídico reciben un honorario mensual fijo e igual, con renovaciones de 6 o 12 meses.","Un pago fijo mensual con renovaciones sucesivas se parece a un salario; si además hay control, aplica la primacía de la realidad (CST art. 23).","Aten el pago a entregables (por pieza o proyecto), documenten la autonomía o reclasifiquen el cargo."],["La modalidad \"híbrido · 42 h/sem\" no tiene figura legal asignada.","Teletrabajo suplementario (Ley 1221 de 2008, art. 2), trabajo en casa (Ley 2088 de 2021) o trabajo remoto (Ley 2121 de 2021), con sus obligaciones y el auxilio de conectividad.","Asignen la figura por cargo y verifiquen quién recibe auxilio (salario hasta 2 SMMLV)."],["Analista de datos, analista de QA y gobierno de IA y diseñador van a fijo de 12 meses, pero son parte del núcleo de los planes.","Ley 2466, art. 6: máximo 4 años, forma escrita y reglas de prórroga; si el cargo se vuelve permanente, el indefinido es la regla general (art. 5).","Expliquen por qué esos cargos son temporales y definan cuándo se convierten en indefinidos."],["El modelo suma prestaciones y aportes completos al aprendiz.","Ley 2466, art. 21: contrato laboral especial a término fijo, apoyo de sostenimiento (para universitarios no inferior a 1 SMMLV) y afiliación como dependiente. No se revisó si el Decreto 223 de 2026 cambia el cálculo.","Verifiquen qué componentes corresponden al aprendiz y ajusten el costo."],["Gerente y CTO son fundadores y la hoja deja abierto \"confirmar con el contador si se vincula como trabajador\".","Ser accionista no genera contrato; hace falta subordinación y remuneración (CST art. 23).","Tomen la decisión y escríbanla en el documento."],["La cláusula de IA no dice qué se cede cuando el contenido lo genera una herramienta.","La cesión de derechos patrimoniales se hace por escrito; las licencias de la herramienta limitan lo que se puede ceder.","Precisen qué se cede, qué licencias aplican y quién responde por el contenido generado."]],"recomendaciones":["Dejen una hoja con las decisiones abiertas (fundadores, comisión del ejecutivo comercial) y la fecha en que las cierran.","Con 18 personas, anticipen obligaciones de empresa (reglamento interno, SG-SST con comités) y revisen cuáles les aplican (verificar).","Agreguen una columna \"criterio de conversión\" a los fijos."],"curveballs":[{"t":"Curveball A. El editor que vive en Slack","e":"Un cliente grande del Plan 3 exige que el editor de video y la copywriter (prestación de servicios) estén disponibles de 8 a.m. a 6 p.m. en su Slack, usen el correo de Pixel Sur y aprueben cada pieza con el Líder de Proyectos. Además, el editor cargó material confidencial del cliente en una herramienta de IA no autorizada y el cliente reclama.","q":["¿Siguen siendo contratistas independientes? Señalen los indicios.","¿Qué cláusulas de autonomía, entregables y propiedad intelectual faltaban?","¿Quién responde por la filtración y qué política de IA y confidencialidad debió pactarse?","Redacten la cláusula de uso de herramientas de IA."]},{"t":"Curveball B. La obra que se volvió permanente","e":"El especialista de implementación (obra o labor) terminó el proyecto del cliente A en marzo. El cliente amplió y el especialista siguió trabajando sin contrato nuevo; en septiembre cubre además el soporte diario que antes hacía la aprendiz.","q":["¿Qué pasa con su contrato según el art. 6 de la Ley 2466?","¿Qué problema hay cuando la aprendiz cubre una función permanente?","Reclasifiquen ambos cargos y justifiquen.","Redacten correctamente la descripción de la obra o labor de un proyecto futuro."]}],"clausula":"Redacten la cláusula de **uso de IA, confidencialidad y propiedad intelectual** del contrato de prestación de servicios del editor."},{"id":"localia","nombre":"Mercado Caribe S.A.S.","giro":"Marketplace digital que conecta marcas nacionales con consumidores.","auditor":"Frío Andino","rev":["¿Cada cargo tiene el tipo de contrato correcto? ¿Resolvieron el caso de la representante suplente?","¿Citan bien la Ley 1221 de 2008 (arts. 2 y 6) y las leyes de trabajo en casa y remoto?","¿Distinguen el nombramiento societario de la relación laboral en la suplente (servicio, subordinación, remuneración)?","¿Cambiaron \"híbrido\" por teletrabajo suplementario? ¿Aplican bien \"móvil\" al ejecutivo comercial?","¿Hay acuerdo escrito, equipos y energía a cargo del empleador, ARL con días y horarios y auxilio de conectividad?","¿La cláusula de teletrabajo trae modalidad, días y horarios, equipos y gastos, ARL y desconexión?"],"matriz":[["Gerente y representante legal (el gerente)","Nombramiento societario"],["Desarrollador de tecnología","Indefinido · teletrabajo autónomo"],["Analista de marketing","Indefinido · \"híbrido\""],["Ejecutivo comercial","Indefinido · teletrabajo móvil"],["Coordinador de operaciones y servicio al cliente","Indefinido · teletrabajo autónomo"],["Auxiliar administrativo y financiero","Indefinido · \"híbrido\""],["Contador externo","Prestación de servicios"],["Abogado externo","Prestación de servicios"],["Representante legal suplente (representante suplente)","Nombramiento societario"]],"bien":["Mapa claro de funciones y vinculación por cargo; cuentan bien las seis personas internas y las dos externas.","Distinguen el cargo societario del laboral: la representante suplente no es empleada por su nombramiento.","Citan sus fuentes con artículos y diapositivas, aplican la primacía de la realidad y prevén contrataciones adicionales (campaña, proyecto, logo) y la expansión a otra ciudad."],"correcciones":[["Usan \"teletrabajo híbrido\" para marketing y administración.","Ley 1221 de 2008, art. 2: las modalidades son autónomos, móviles y suplementarios; suplementarios son quienes laboran dos o tres días a la semana en su casa.","Llámenlo teletrabajo suplementario."],["El documento no recoge las condiciones formales del teletrabajo.","Ley 1221 de 2008, art. 6: vinculación voluntaria, equipos, conexión y energía a cargo del empleador, inclusión en salud ocupacional y red de atención de urgencias. En la práctica se reporta a la ARL con días y horarios de trabajo.","Agreguen un anexo por cargo con acuerdo escrito, días y horarios, equipos y cobertura ARL."],["Dicen que pagarán horas extras y recargos al personal en teletrabajo.","El texto consultado de la Ley 1221, art. 6, núm. 1, indica que no aplican a los teletrabajadores las reglas de jornada, horas extra y trabajo nocturno (verificar en el texto oficial).","Aclaren qué regla aplican a cada modalidad y cómo controlan la carga y la desconexión (Ley 2191 de 2022)."],["El ejecutivo comercial queda como \"teletrabajo móvil\".","Móviles son quienes no tienen un lugar de trabajo establecido (Ley 1221, art. 2). Ya lo advierten en el documento.","Decidan con el hecho real: si parte de una sede y hace visitas, no es móvil."],["No hay salarios por cargo.","El auxilio de conectividad reemplaza al de transporte para quienes devengan hasta 2 SMMLV (verifiquen el artículo en el texto de la Ley 2466).","Agreguen rangos salariales y calculen el costo mensual."]],"recomendaciones":["Como accionista único, decidan si el gerente recibirá salario o retirará utilidades, y déjenlo escrito.","Agreguen un cuadro de riesgos por cargo, con la clase de riesgo ARL.","En la sección de expansión, aclaren si las nuevas ciudades serán sucursales o trabajo remoto."],"curveballs":[{"t":"Curveball A. Accidente en la sala de la casa","e":"El desarrollador (teletrabajo autónomo) se cae por las escaleras de su casa a las 10 a.m., mientras lleva su portátil al escritorio, y se fractura un brazo. No hay acuerdo escrito de teletrabajo, no se reportó a la ARL y el equipo es personal.","q":["¿Cómo se decide si es accidente de trabajo y qué documentos debían existir?","¿Quién debe proveer equipo, conexión y energía?","¿Qué auxilio le corresponde, conectividad o transporte, y por qué?","Redacten la cláusula de teletrabajo: modalidad, días y horarios, equipos y ARL."]},{"t":"Curveball B. La suplente que trabaja","e":"la representante suplente, representante legal suplente, revisó pagos y atendió clientes 20 horas a la semana durante tres meses, siguiendo instrucciones del gerente, y presentaba cuentas de cobro mensuales. Ahora el gerente quiere dejar de pagarle y ella reclama prestaciones.","q":["¿Qué es esa relación en la realidad? ¿Bastan el nombramiento societario o las cuentas de cobro?","¿Qué indicios se examinan?","¿Cómo debió estructurarse: prestación de servicios genuina o laboral a tiempo parcial?","Redacten el objeto del contrato correcto."]}],"clausula":"Redacten la cláusula de **teletrabajo** del desarrollador: modalidad, días y horarios, equipos y gastos, cobertura ARL y desconexión."},{"id":"poliglonia","nombre":"Estudio Modular S.A.S.","giro":"Plataforma de inteligencia artificial que genera modelos 3D para videojuegos (Unreal Engine y Unity).","auditor":"Seca Pie","rev":["¿La matriz tiene al menos seis cargos y tres tipos de contrato distintos, cada uno justificado? ¿Qué decidieron para los artistas 3D y el ingeniero socio?","¿Citan la Ley 2466 y la Ley 1258 (art. 10) con lo que realmente dicen?","¿Reconocen en los artistas 3D la revisión diaria y la exclusividad como indicios de subordinación?","¿Cada cargo tiene modalidad con nombre legal (teletrabajo, trabajo remoto)?","¿Separan las acciones del ingeniero de su salario y de sus obligaciones laborales?","¿La cláusula establece entregables, autonomía y cesión de derechos sobre los modelos?"],"sugeridos":"dirección, tecnología e IA, arte 3D, producto, comercial, soporte, contabilidad y asesoría jurídica","matriz":null,"bien":[],"correcciones":[],"recomendaciones":[],"curveballs":[{"t":"Curveball A. Los artistas 3D que entrenan la IA","e":"Contratan cuatro artistas 3D freelance que producen modelos para entrenar y validar el sistema. Trabajan desde sus casas y entregan por pieza, pero la gerencia les fija una revisión diaria a las 9 a.m. y exclusividad. Uno de ellos exige quedarse con la propiedad de los modelos que hizo.","q":["¿Prestación de servicios o relación laboral? Señalen los indicios.","¿Quién es titular de los modelos y qué debió firmarse?","Propongan el modelo de vinculación y la modalidad (teletrabajo, trabajo remoto).","Redacten la cláusula de entregables, autonomía y cesión de derechos."]},{"t":"Curveball B. El ingeniero de ML que también es socio","e":"El ingeniero de aprendizaje automático es cofundador y recibió acciones por su trabajo. A los seis meses pide salario, vacaciones y prima, y avisa que se va si no se los reconocen.","q":["¿Qué vínculo tiene hoy: societario, laboral o ambos?","¿Qué cambia si se firma contrato de trabajo además de ser accionista?","¿Qué debe pasar con su participación si se retira?","Propongan la estructura y redacten la cláusula de dedicación y confidencialidad."]}],"clausula":"Redacten la cláusula de **entregables, autonomía y cesión de derechos** del contrato de los artistas 3D."},{"id":"drygo","nombre":"Seca Pie","giro":"Dispositivo para limpiar y secar zapatos.","auditor":"Estudio Modular","rev":["¿La matriz tiene al menos seis cargos y tres tipos de contrato distintos, cada uno justificado? ¿Qué eligieron para el pedido grande y para los vendedores?","¿Citan la Ley 2466 (arts. 5 y 6) y justifican el fijo, la obra o labor o el taller externo con base legal?","¿Ven el riesgo de relación laboral encubierta en el taller externo y en los vendedores con meta y zona asignada?","¿Cada cargo tiene modalidad con nombre legal?","¿Garantizan al menos el mínimo a quien trabaja como empleado? ¿Incluyen seguridad social y prestaciones?","¿La cláusula describe con precisión la obra o labor, o la remuneración y las metas del vendedor?"],"sugeridos":"dirección, producción o ensamble, diseño de producto, comercial y ferias, servicio técnico, logística, contabilidad y asesoría jurídica","matriz":null,"bien":[],"correcciones":[],"recomendaciones":[],"curveballs":[{"t":"Curveball A. El pedido grande","e":"Una cadena de tiendas hace un pedido de 2.000 unidades para entregar en tres meses. Necesitan seis ensambladores solo para ese pedido y están dudando entre contrato fijo, obra o labor, o entregar el ensamble a un taller externo.","q":["Comparen las tres opciones: ventajas, riesgos y qué dice la ley de cada una.","Si eligen obra o labor, ¿cómo describen la obra con precisión?","Si eligen el taller externo, ¿cómo evitan que se vuelva una relación laboral encubierta?","Decidan y justifiquen."]},{"t":"Curveball B. Vendedores en ferias","e":"Quieren vender el dispositivo en ferias y centros comerciales con vendedores que ganen solo comisión, sin salario base ni horario, pero con meta mensual y una zona asignada.","q":["¿Qué mínimo debe garantizar la empresa a quien trabaja como empleado?","¿La meta mensual y la zona asignada cambian la naturaleza del contrato?","Propongan la figura (laboral con comisión o agencia comercial) y justifiquen.","Redacten la cláusula de remuneración y de metas."]}],"clausula":"Redacten la cláusula de **objeto de la obra o labor** (si eligen esa figura) o la de **remuneración y metas** del vendedor."}];
+
+const LEGAL_ROWS = [
+ ["Contrato indefinido: regla general. Otras modalidades: fijo, obra o labor, trabajo ocasional","Ley 2466/2025, art. 5"],
+ ["Fijo: máximo 4 años, por escrito, con prórrogas; tras la cuarta prórroga, mínimo 1 año; aviso de no renovación con 30 días (si no hay aviso, se renueva); sin forma escrita se entiende indefinido desde el inicio","Ley 2466/2025, art. 6"],
+ ["Obra o labor: por escrito y con la obra precisa; si el trabajador continúa sin nueva obra, indefinido desde el inicio","Ley 2466/2025, art. 6"],
+ ["Jornada nocturna: de 7 p.m. a 6 a.m.","Ley 2466/2025, art. 10"],
+ ["Recargo dominical y festivo: 80% desde 1-jul-2025, 90% desde 1-jul-2026, 100% desde 1-jul-2027","Ley 2466/2025, art. 14"],
+ ["Aprendizaje: contrato laboral especial a término fijo hasta 3 años; apoyo de sostenimiento 75% en etapa lectiva y 100% en práctica; universitarios mínimo 1 SMMLV; la subordinación se limita a lo de la formación","Ley 2466/2025, art. 21"],
+ ["Jornada máxima de 42 horas semanales desde el 15-jul-2026","Ley 2101/2021"],
+ ["Exoneración de aportes de salud (empleador), SENA e ICBF para trabajadores que ganen menos de 10 SMMLV (no menciona caja de compensación)","Estatuto Tributario, art. 114-1"],
+ ["Teletrabajo: autónomo, móvil y suplementario (2 a 3 días por semana en casa); acuerdo escrito, equipos y ARL","Ley 1221/2008, arts. 2 y 6"],
+ ["Trabajo en casa y trabajo remoto: figuras distintas al teletrabajo; auxilio de conectividad en lugar del de transporte","Leyes 2088 y 2121 de 2021"],
+ ["Socio industrial en una SAS: el aporte de industria es procedente","Ley 1258/2008, art. 10; Oficio Supersociedades 220-023136/2010"],
+ ["Primacía de la realidad: los hechos prevalecen sobre el nombre del contrato (criterio general)","Constitución, art. 53; CST, art. 23"],
+ ["Criterio orientador del Ministerio de Trabajo (no es norma vinculante)","Concepto MinTrabajo 6157/2026"]
+];
+const LEGAL_TEXT = LEGAL_ROWS.map(r=>"- "+r[0]+" ["+r[1]+"]").join("\n");
+const VERIF = ["CST arts. 127, 128, 230 y 76 a 80","Ley 43 de 1990, art. 13","Decreto 1072 de 2015 (SG-SST)","Ley 2191 de 2022 (desconexión laboral)","Ley 1581 de 2012 (datos personales)","Ley 1562 de 2012, art. 3","Decreto 223 de 2026 (aprendizaje)","Ley 1258 de 2008, art. 20","Código de Comercio, art. 198","Ley 1221 de 2008, art. 6, num. 1 (jornada del teletrabajador)","Artículo del auxilio de conectividad en la Ley 2466"];
+const CRIT = ["1. Tipo de contrato","2. Base legal","3. Primacía de la realidad","4. Modalidad con nombre legal","5. Obligaciones","6. Cláusula estrella"];
+const CRITERIOS = "1) Tipo de contrato correcto; 2) Base legal citada correctamente; 3) Primacía de la realidad (reconoce los indicios de subordinación o de autonomía); 4) Modalidad con nombre legal (teletrabajo, trabajo en casa, remoto; no 'híbrido' a secas); 5) Obligaciones (seguridad social, prestaciones, ARL, recargos, jornada); 6) Cláusula estrella (cláusula aplicable al caso).";
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function bold(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\(verificar\)/g,'<span class="badge v">verificar</span>').replace(/, verificar\)/g,')</span>'); }
+function fmt(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\(verificar\)|, verificar\)/g,m=>m===", verificar)"?') <span class="badge v">verificar</span>':' <span class="badge v">verificar</span>'); }
+function md(t){
+  const lines = esc(t).split("\n"); let out = "", inList = false;
+  for(const raw of lines){
+    let l = raw.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");
+    const m = /^\s*[-*•]\s+(.*)$/.exec(l) || /^\s*\d+[.)]\s+(.*)$/.exec(l);
+    if(m){ if(!inList){out+="<ul>";inList=true;} out+="<li>"+m[1]+"</li>"; }
+    else { if(inList){out+="</ul>";inList=false;} if(l.trim()) out+="<p>"+l.replace(/^#+\s*/,"")+"</p>"; }
+  }
+  if(inList) out+="</ul>"; return out;
+}
+
+/* ---------- estado ---------- */
+let cur = CASES[0], sample = null, ctx = null, turns = [], ctl = null, busy = false;
+const answers = {};   // por empresa: {a0,a1,cl,sheet:[{c,h,r}]}
+function st(){ return answers[cur.id] || (answers[cur.id] = {a:["",""],cl:"",sheet:CRIT.map(()=>({c:"",h:"",r:""}))}); }
+
+/* ---------- pestañas ---------- */
+document.querySelectorAll("#nav button").forEach(b=>b.addEventListener("click",()=>show(b.dataset.tab)));
+function show(tab){
+  document.querySelectorAll("#nav button").forEach(x=>x.setAttribute("aria-selected", x.dataset.tab===tab?"true":"false"));
+  ["s1","s2","s3","s4","b","ev"].forEach(id=>$(id).hidden = id!==tab);
+}
+
+/* ---------- empresas ---------- */
+function renderChips(){
+  $("chips").innerHTML = "";
+  CASES.forEach(c=>{
+    const b=document.createElement("button"); b.className="chip"; b.type="button";
+    b.setAttribute("aria-pressed", c===cur?"true":"false"); b.textContent=c.nombre;
+    b.onclick=()=>{ saveInputs(); if(c!==cur){ closeChat(); } cur=c; renderChips(); renderAll(); };
+    $("chips").appendChild(b);
+  });
+  $("empdesc").textContent = cur.giro;
+}
+function saveInputs(){
+  const s = st();
+  document.querySelectorAll("[data-a]").forEach(t=>{ s.a[+t.dataset.a]=t.value; });
+  const cl=document.querySelector("[data-cl]"); if(cl) s.cl=cl.value;
+  document.querySelectorAll("[data-row]").forEach(el=>{ const i=+el.dataset.row; s.sheet[i][el.dataset.f]=el.value; });
+}
+function orgTable(c){
+  if(!c.matriz) return '<p>Este grupo construye su matriz durante la sesión. Cargos sugeridos para empezar: <b>'+esc(c.sugeridos)+'</b>.</p><p class="muted">Se pide al menos 6 cargos y 3 tipos de contrato distintos, cada uno justificado, con modalidad con nombre legal.</p>';
+  return '<div class="tw"><table><thead><tr><th>Cargo</th><th>Contrato y modalidad</th></tr></thead><tbody>'+c.matriz.map(r=>"<tr><td>"+esc(r[0])+"</td><td>"+esc(r[1])+"</td></tr>").join("")+"</tbody></table></div>";
+}
+function renderAll(){
+  $("org").innerHTML = orgTable(cur);
+  let fb="";
+  if(!cur.correcciones.length){
+    fb = '<p>Esta empresa no entregó organigrama antes de la sesión: construye su matriz en clase y la audita otro grupo. No hay correcciones previas.</p>';
+  } else {
+    fb += "<h3>Lo que está bien</h3><ul class='clean'>"+cur.bien.map(x=>"<li>"+fmt(x)+"</li>").join("")+"</ul>";
+    fb += "<h3>Correcciones que debe hacer el grupo</h3><div class='tw'><table><thead><tr><th>Hallazgo</th><th>Base legal</th><th>Qué hacer</th></tr></thead><tbody>"+cur.correcciones.map(r=>"<tr><td>"+fmt(r[0])+"</td><td>"+fmt(r[1])+"</td><td>"+fmt(r[2])+"</td></tr>").join("")+"</tbody></table></div>";
+    fb += "<h3>Recomendaciones</h3><ul class='clean'>"+cur.recomendaciones.map(x=>"<li>"+fmt(x)+"</li>").join("")+"</ul>";
+  }
+  $("fb").innerHTML = fb;
+  renderCb(); renderAudit();
+}
+
+/* ---------- curveballs ---------- */
+function renderCb(){
+  const s=st(); let h="";
+  cur.curveballs.forEach((k,i)=>{
+    h += '<div class="card"><h2>'+esc(k.t)+'</h2><p>'+esc(k.e)+'</p><h3>Preguntas guía</h3><ol class="cbq">'+k.q.map(q=>"<li>"+esc(q)+"</li>").join("")+'</ol>'+
+      '<label class="muted" for="a'+i+'">Respuesta del grupo (decisión y razones, con base legal)</label>'+
+      '<textarea id="a'+i+'" data-a="'+i+'" rows="5" placeholder="Escribe aquí lo que decide el grupo y por qué...">'+esc(s.a[i])+'</textarea>'+
+      '<div class="row" style="margin-top:8px"><button class="btn" data-debate="'+i+'">Debatir con el inspector (IA)</button></div></div>';
+  });
+  h += '<div class="card"><h2>Cláusula estrella</h2><p>'+fmt(cur.clausula)+'</p><textarea data-cl rows="5" placeholder="Redacta la cláusula...">'+esc(s.cl)+'</textarea></div>';
+  $("cbs").innerHTML = h;
+  $("cbs").querySelectorAll("[data-debate]").forEach(b=>b.onclick=()=>{ saveInputs(); openChat({mode:"insp", i:+b.dataset.debate}); });
+}
+
+/* ---------- auditoría ---------- */
+function renderAudit(){
+  const s=st();
+  $("audintro").textContent = cur.auditor+" audita a "+cur.nombre+". Reciban su organigrama, califiquen con la hoja de referencia al lado y preparen un hallazgo para el tribunal.";
+  $("audorg").innerHTML = orgTable(cur);
+  let h="<thead><tr><th>Criterio</th><th>Qué revisar</th><th>Semáforo</th><th>Hallazgo</th><th>Recomendación</th></tr></thead><tbody>";
+  CRIT.forEach((c,i)=>{
+    const r=s.sheet[i];
+    h+="<tr><td><b>"+esc(c)+"</b></td><td>"+esc(cur.rev[i])+"</td>"+
+     '<td><select data-row="'+i+'" data-f="c"><option value="">—</option><option value="Verde"'+(r.c==="Verde"?" selected":"")+'>🟢 Verde</option><option value="Amarillo"'+(r.c==="Amarillo"?" selected":"")+'>🟡 Amarillo</option><option value="Rojo"'+(r.c==="Rojo"?" selected":"")+'>🔴 Rojo</option></select></td>'+
+     '<td><textarea rows="3" data-row="'+i+'" data-f="h">'+esc(r.h)+'</textarea></td>'+
+     '<td><textarea rows="3" data-row="'+i+'" data-f="r">'+esc(r.r)+'</textarea></td></tr>';
+  });
+  $("sheet").innerHTML = h+"</tbody>";
+  $("sheet").querySelectorAll("[data-row]").forEach(el=>el.addEventListener("change",()=>{ saveInputs(); tally(); }));
+  tally();
+}
+function tally(){
+  const s=st(), n={Verde:0,Amarillo:0,Rojo:0};
+  s.sheet.forEach(r=>{ if(r.c) n[r.c]++; });
+  $("tally").innerHTML='<span class="sg-g">🟢 '+n.Verde+'</span><span class="sg-y">🟡 '+n.Amarillo+'</span><span class="sg-r">🔴 '+n.Rojo+'</span>';
+}
+$("tribunal").addEventListener("click",()=>{
+  saveInputs(); const s=st();
+  if(!s.sheet.some(r=>r.c && r.h.trim())){ $("auditstatus").textContent="Marca al menos un semáforo y escribe su hallazgo."; return; }
+  $("auditstatus").textContent=""; openChat({mode:"trib"});
+});
+
+/* ---------- ley ---------- */
+$("legaltable").innerHTML = LEGAL_ROWS.map(r=>"<tr><td>"+esc(r[0])+"</td><td>"+esc(r[1])+"</td></tr>").join("");
+$("verif").innerHTML = VERIF.map(v=>"<li>"+esc(v)+"</li>").join("");
+
+/* ---------- prompts ---------- */
+function orgText(c){ return c.matriz ? c.matriz.map(r=>"- "+r[0]+": "+r[1]).join("\n") : "(Aún no tienen matriz; cargos sugeridos: "+c.sugeridos+")"; }
+function sheetText(c,s){
+  return CRIT.map((k,i)=>{ const r=s.sheet[i]; return k+" | Semáforo: "+(r.c||"sin marcar")+" | Hallazgo: "+(r.h.trim()||"(vacío)")+" | Recomendación: "+(r.r.trim()||"(vacía)"); }).join("\n");
+}
+const COMMON_HONESTY = [
+"REGLAS DE HONESTIDAD:",
+"- No cites artículos, sentencias ni decretos que no estén en la lista de BASE LEGAL. Si te preguntan por algo fuera de ella, di: 'No tengo base verificada para eso; verifíquelo en la norma' y no lo afirmes.",
+"- No inventes cifras ni plazos. Si dudas, di que debe verificarse.",
+"- Si el estudiante cita una norma de forma incorrecta según la lista, corrígelo con la fuente de la lista.",
+"",
+"REGLAS ÉTICAS:",
+"- Las empresas son ficticias. No pidas ni aceptes nombres de personas reales, documentos, direcciones ni datos personales; si aparecen, pide anonimizarlos.",
+"- Orienta al razonamiento: el estudiante debe justificar, no memorizar. Nunca presentes tu opinión como decisión de una autoridad real.",
+"- Responde siempre en español, de 'usted', con tono firme pero respetuoso. Máximo 130 palabras por respuesta."
+].join("\n");
+
+function buildRules(m, ext){
+  const c = m.c, s = m.s;
+  const head = "ROL: Eres una IA que simula "+(m.mode==="trib" ? "el tribunal de una auditoría cruzada" : "a un inspector del Ministerio de Trabajo de Colombia")+" en un ejercicio pedagógico del curso Marco Legal de los Negocios (Universidad Sergio Arboleda). Al empezar, aclara en una línea que eres una IA que simula con fines educativos y que no es asesoría jurídica.";
+  const base = "BASE LEGAL (única que puedes citar como verificada):\n"+LEGAL_TEXT;
+  const emp = "EMPRESA (ficticia): "+c.nombre+". "+c.giro+"\nORGANIGRAMA:\n"+orgText(c);
+  let body;
+  if(m.mode==="insp"){
+    const k = c.curveballs[m.i];
+    body = [
+"CÓMO CONDUCIR EL EJERCICIO:",
+"- Plantea el curveball y pide una sola decisión a la vez.",
+"- GUÍA, NO RESPONDAS: no entregues la solución. Pregunta, repregunta y señala indicios. Si piden la respuesta directa, da solo una pista y devuelve una pregunta.",
+"- Debate: si la justificación es débil o contradice los hechos, objétala con la pregunta que haría un inspector real. Si es sólida, reconócelo y sube el nivel.",
+"- Guía por los seis criterios sin recitarlos de golpe: "+CRITERIOS,
+"- Cuando el estudiante escriba 'EVALUAR' o pida la evaluación: un semáforo por cada uno de los 6 criterios con 🟢 (cumple), 🟡 (en parte o falta fundamento) o 🔴 (error que cambia la naturaleza del contrato o riesgo no visto); una frase de hallazgo por criterio basada solo en lo que el estudiante dijo; y UNA acción concreta de mejora. Si no abordó un criterio, dilo y márcalo 🟡 o 🔴.",
+"",base,"",COMMON_HONESTY,"",emp,"",
+"CURVEBALL: "+k.t+". "+k.e,
+"PREGUNTAS GUÍA (úsalas como hilo, una a la vez, sin leerlas todas): "+k.q.join(" | "),
+"CLÁUSULA ESTRELLA ESPERADA (pídela al final): "+c.clausula.replace(/\*\*/g,""),
+"",
+m.ans && m.ans.trim() ? "RESPUESTA INICIAL DEL GRUPO (evalúala y debátela, no la corrijas de una vez):\n"+m.ans.trim() : "El grupo aún no escribió respuesta: plantea el curveball y pide su primera decisión."
+    ].join("\n");
+  } else {
+    const key = c.correcciones.length ? "CLAVE DEL DOCENTE (hallazgos reales del organigrama; NO la reveles completa, úsala para comprobar y dar pistas):\n"+c.correcciones.map(r=>"- "+r[0]+" -> "+r[1]).join("\n") : "Este organigrama no tiene clave previa: juzga con los hechos de la matriz y la base legal.";
+    body = [
+"CÓMO CONDUCIR EL TRIBUNAL:",
+"- El grupo auditor ("+c.auditor+") audita a "+c.nombre+" y defiende sus hallazgos ante ti. Revisa su hoja de auditoría criterio por criterio.",
+"- Un hallazgo sin hecho concreto o sin base legal es débil: pídelo. Un color sin hallazgo no cuenta.",
+"- Verifica si el color es razonable: ¿marcaron verde algo que la clave muestra como error? ¿Hay un rojo no visto? Da una pista, no la respuesta completa.",
+"- Pide al auditor que defienda UN hallazgo (rojo o amarillo) en 2 minutos y objétalo como lo haría el grupo auditado.",
+"- Cuando el estudiante escriba 'EVALUAR' o pida la evaluación: veredicto con 🟢/🟡/🔴 sobre la calidad de la auditoría (hallazgos concretos, base legal, recomendaciones aplicables) y UNA acción de mejora.",
+"",base,"",COMMON_HONESTY,"",emp,"",key,"",
+"HOJA DE AUDITORÍA DEL GRUPO AUDITOR:\n"+sheetText(c,s),
+"",
+"Empieza revisando la hoja y haciendo la primera pregunta."
+    ].join("\n");
+  }
+  return head+"\n\n"+body+(ext?"\n\nEmpieza ahora. Después espera mi respuesta.":"");
+}
+
+/* ---------- chat ---------- */
+function openChat(m){
+  m.c = cur; m.s = st(); m.ans = m.mode==="insp" ? m.s.a[m.i] : "";
+  ctx = m; turns = []; $("chat").innerHTML=""; $("status").textContent="";
+  $("roomtag").textContent = (m.mode==="insp" ? "Inspector · " : "Tribunal · ")+cur.nombre+(m.mode==="insp" ? " · Curveball "+(m.i+1) : "");
+  $("chatbox").hidden=false; $("chatbox").scrollIntoView({behavior:"smooth",block:"start"});
+  ask("Inicia.", null);
+}
+function closeChat(){ if(ctl) ctl.abort(); $("chatbox").hidden=true; ctx=null; turns=[]; }
+$("close").onclick=closeChat;
+
+function addMsg(role,text){
+  const d=document.createElement("div"); d.className="msg "+(role==="user"?"user":"bot");
+  d.innerHTML='<span class="who">'+(role==="user"?"Grupo":(ctx&&ctx.mode==="trib"?"Tribunal (IA)":"Inspector (IA)"))+'</span><div class="body"></div>';
+  d.querySelector(".body").innerHTML=md(text); $("chat").appendChild(d); $("chat").scrollTop=$("chat").scrollHeight; return d.querySelector(".body");
+}
+function setBusy(b){ busy=b; ["send","hint","evalbtn","input"].forEach(i=>$(i).disabled=b); $("stop").hidden=!b; }
+const ERR={rate_limited:"Demasiadas solicitudes o límite de uso alcanzado. Espera y vuelve a intentar.",session_expired:"Tu sesión expiró. Vuelve a iniciar sesión en Claude.",refused:"La IA no pudo responder a ese mensaje. Reformúlalo.",empty_completion:"La IA no devolvió texto. Intenta con un mensaje más corto.",prompt_too_large:"La conversación es demasiado larga. Ábrela de nuevo."};
+async function ask(userText, shown){
+  if(!ctx || busy) return;
+  if(!sample){ $("nosample").hidden=false; return; }
+  turns.push({role:"user",content:userText});
+  if(shown) addMsg("user",shown);
+  const body=addMsg("bot",""); body.innerHTML="<p><i>Revisando…</i></p>";
+  setBusy(true); $("status").textContent=""; ctl=new AbortController();
+  const hist=turns.slice(-30); while(hist.length && hist[0].role!=="user") hist.shift();
+  try{
+    const r=await sample([{role:"user",content:buildRules(ctx,false)},...hist],{cache:false,signal:ctl.signal,onText:({text})=>{ body.innerHTML=md(text); $("chat").scrollTop=$("chat").scrollHeight; }});
+    turns.push({role:"assistant",content:r.text}); body.innerHTML=md(r.text);
+    if(r.truncated) $("status").textContent="Respuesta cortada por longitud. Pide que continúe.";
+  }catch(e){
+    turns.pop();
+    if(e&&e.text) body.innerHTML=md(e.text)+"<p><i>(interrumpida)</i></p>"; else body.closest(".msg").remove();
+    const c=e&&e.code;
+    if(c==="cancelled") $("status").textContent="Detenido.";
+    else if(["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed"].includes(c)){ closeChat(); $("nosample").hidden=false; $("nosample").innerHTML="No se permitió usar Claude en esta página. Usa la pestaña <b>Plan B</b> con otra IA."; }
+    else $("status").textContent=ERR[c]||"Error de conexión. Intenta de nuevo con Enviar.";
+  }finally{ setBusy(false); ctl=null; }
+}
+$("send").onclick=()=>{ const t=$("input").value.trim(); if(!t) return; $("input").value=""; ask(t,t); };
+$("input").addEventListener("keydown",e=>{ if(e.key==="Enter"&&(e.ctrlKey||e.metaKey)){ e.preventDefault(); $("send").click(); } });
+$("stop").onclick=()=>{ if(ctl) ctl.abort(); };
+$("hint").onclick=()=>ask("Pido una pista: oriénteme con una pregunta, sin darme la respuesta.","Pido una pista.");
+$("evalbtn").onclick=()=>ask("EVALUAR: entregue ahora la evaluación con semáforo y una acción de mejora.","EVALUAR");
+
+/* ---------- plan B ---------- */
+function fillB(){
+  const s=$("bcase"); s.innerHTML="";
+  CASES.forEach(c=>c.curveballs.forEach((k,i)=>{ const o=document.createElement("option"); o.value="i|"+c.id+"|"+i; o.textContent="Inspector · "+c.nombre+" · "+k.t; s.appendChild(o); }));
+  CASES.forEach(c=>{ const o=document.createElement("option"); o.value="t|"+c.id; o.textContent="Tribunal de auditoría · "+c.nombre; s.appendChild(o); });
+  s.addEventListener("change",updB);
+}
+function updB(){
+  const v=$("bcase").value.split("|"); const c=CASES.find(x=>x.id===v[1]);
+  let m;
+  if(v[0]==="i") m={mode:"insp",i:+v[2],c,s:null,ans:""};
+  else {
+    m={mode:"trib",c,s:{sheet:CRIT.map(()=>({c:"",h:"(Pegaré aquí mi hoja de auditoría en mi siguiente mensaje)",r:""}))}};
+  }
+  $("bprompt").textContent=buildRules(m,true);
+}
+$("copy").onclick=async()=>{
+  const t=$("bprompt").textContent, s=$("copystatus");
+  try{ await navigator.clipboard.writeText(t); s.textContent="Copiado. Pégalo en la otra IA."; }
+  catch(e){ try{ const r=document.createRange(); r.selectNodeContents($("bprompt")); const w=window.getSelection(); w.removeAllRanges(); w.addRange(r); s.textContent="Texto seleccionado: cópialo con Ctrl+C."; }catch(_){ s.textContent="Selecciona el texto y cópialo."; } }
+};
+
+/* ---------- init ---------- */
+fillB(); updB(); renderChips(); renderAll();
+(async()=>{
+  try{ sample = window.claude ? await window.claude.use("sample") : null; }catch(e){ sample=null; }
+  if(!sample) $("nosample").hidden=false;
+})();
+})();
+</script>
+
+</body></html>
